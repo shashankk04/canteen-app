@@ -18,7 +18,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   // Set up axios defaults
-  axios.defaults.baseURL = "https://canteen-backend-mjpi.onrender.com";
+  axios.defaults.baseURL = 'https://canteen-backend-mjpi.onrender.com/api';
 
   useEffect(() => {
     const token = localStorage.getItem('token');
