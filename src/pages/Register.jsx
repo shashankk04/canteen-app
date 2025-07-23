@@ -88,38 +88,37 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gradient-to-br from-[#0f172a] to-[#1e293b]">
+    <div className="min-h-screen flex items-center justify-center p-3 bg-gradient-to-br from-[#0f172a] to-[#1e293b]">
       <Container maxWidth="sm">
         <Paper 
           elevation={0}
-          className="p-12 rounded-[2.5rem] shadow-2xl backdrop-blur-2xl bg-[#1e293b]/80 relative overflow-hidden"
+          className="p-4 rounded-lg shadow-xl backdrop-blur-xl bg-[#1e293b]/80 relative overflow-hidden"
           sx={{
             background: 'rgba(30,41,59,0.85)',
-            boxShadow: '0 0 32px 8px #6366f1aa, 0 8px 40px 0 #a78bfa55',
-            borderRadius: '2.5rem',
+            boxShadow: '0 0 12px 2px #6366f1aa, 0 2px 16px 0 #a78bfa55',
+            borderRadius: '0.75rem',
             overflow: 'hidden',
           }}
         >
           {/* Header */}
-          <Box textAlign="center" mb={5}>
+          <Box textAlign="center" mb={3}>
             <Box 
-              className="w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6 shadow-2xl animate-pulse"
-              sx={{ boxShadow: '0 0 32px 8px #a78bfa55, 0 4px 32px #6366f1' }}
+              className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 shadow-lg animate-pulse"
+              sx={{ boxShadow: '0 0 12px 2px #a78bfa55, 0 2px 12px #6366f1' }}
             >
-              <Restaurant sx={{ fontSize: 48, color: 'white', filter: 'drop-shadow(0 0 8px #a78bfa)' }} />
+              <Restaurant sx={{ fontSize: 24, color: 'white', filter: 'drop-shadow(0 0 2px #a78bfa)' }} />
             </Box>
             <Typography 
-              variant="h2" 
+              variant="h3" 
               component="h1" 
-              className="font-extrabold text-slate-100 mb-2 tracking-tight"
-              sx={{ letterSpacing: '-0.04em', fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 900, fontSize: '2.5rem' }}
+              className="font-extrabold text-slate-100 mb-1 tracking-tight"
+              sx={{ letterSpacing: '-0.02em', fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 900 }}
             >
               Create Account
             </Typography>
             <Typography 
               variant="body1" 
-              className="text-slate-400 mb-2"
-              sx={{ fontSize: '1.1rem' }}
+              className="text-slate-400 mb-1"
             >
               Join the Canteen Management System
             </Typography>
@@ -133,7 +132,7 @@ const Register = () => {
           )}
 
           {/* Register Form */}
-          <form onSubmit={handleSubmit} className="flex flex-col gap-7 mt-2">
+          <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-2">
             <TextField
               fullWidth
               label="Full Name"
@@ -145,18 +144,18 @@ const Register = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Person className="text-blue-400" />
+                    <Person className="text-blue-400" sx={{ fontSize: 20 }} />
                   </InputAdornment>
                 ),
                 disableUnderline: true,
               }}
               sx={{
-                input: { color: '#f1f5f9', background: '#334155', borderRadius: 12, fontSize: '1.1rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
-                label: { color: '#94a3b8', fontWeight: 500 },
+                input: { color: '#f1f5f9', background: '#334155', borderRadius: 8, fontSize: '0.9rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
+                label: { color: '#94a3b8', fontWeight: 500, fontSize: '0.875rem' },
                 '& .MuiFilledInput-root': {
                   background: '#334155',
-                  borderRadius: 12,
-                  boxShadow: '0 2px 12px #6366f122',
+                  borderRadius: 8,
+                  boxShadow: '0 2px 8px #6366f122',
                   '&:hover': { background: '#475569' },
                   '&.Mui-focused': { background: '#334155', borderColor: '#6366f1' },
                 },
@@ -177,18 +176,18 @@ const Register = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Email className="text-blue-400" />
+                    <Email className="text-blue-400" sx={{ fontSize: 20 }} />
                   </InputAdornment>
                 ),
                 disableUnderline: true,
               }}
               sx={{
-                input: { color: '#f1f5f9', background: '#334155', borderRadius: 12, fontSize: '1.1rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
-                label: { color: '#94a3b8', fontWeight: 500 },
+                input: { color: '#f1f5f9', background: '#334155', borderRadius: 8, fontSize: '0.9rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
+                label: { color: '#94a3b8', fontWeight: 500, fontSize: '0.875rem' },
                 '& .MuiFilledInput-root': {
                   background: '#334155',
-                  borderRadius: 12,
-                  boxShadow: '0 2px 12px #6366f122',
+                  borderRadius: 8,
+                  boxShadow: '0 2px 8px #6366f122',
                   '&:hover': { background: '#475569' },
                   '&.Mui-focused': { background: '#334155', borderColor: '#6366f1' },
                 },
@@ -197,8 +196,8 @@ const Register = () => {
               }}
             />
 
-            <FormControl fullWidth variant="filled" sx={{ mt: 0, mb: 0, '& .MuiFilledInput-root': { background: '#334155', borderRadius: 3, boxShadow: '0 2px 12px #6366f122' }, '& .MuiFilledInput-underline:before': { borderBottom: 'none' }, '& .MuiFilledInput-underline:after': { borderBottom: 'none' }, }}>
-              <InputLabel>Role</InputLabel>
+            <FormControl fullWidth variant="filled" sx={{ mt: 0, mb: 0, '& .MuiFilledInput-root': { background: '#334155', borderRadius: 2, boxShadow: '0 2px 8px #6366f122' }, '& .MuiFilledInput-underline:before': { borderBottom: 'none' }, '& .MuiFilledInput-underline:after': { borderBottom: 'none' }, }}>
+              <InputLabel sx={{ color: '#94a3b8', fontWeight: 500, fontSize: '0.875rem' }}>Role</InputLabel>
               <Select
                 name="role"
                 value={formData.role}
@@ -206,9 +205,10 @@ const Register = () => {
                 label="Role"
                 disableUnderline
                 sx={{
-                  borderRadius: 12,
+                  borderRadius: 8,
                   color: '#f1f5f9',
                   background: '#334155',
+                  fontSize: '0.9rem',
                   '& .MuiSelect-select': { color: '#f1f5f9' },
                   '&:hover': { background: '#475569' },
                   '&.Mui-focused': { background: '#334155', borderColor: '#6366f1' },
@@ -231,18 +231,18 @@ const Register = () => {
                 InputProps={{
                   startAdornment: (
                     <InputAdornment position="start">
-                      <Badge className="text-blue-400" />
+                      <Badge className="text-blue-400" sx={{ fontSize: 20 }} />
                     </InputAdornment>
                   ),
                   disableUnderline: true,
                 }}
                 sx={{
-                  input: { color: '#f1f5f9', background: '#334155', borderRadius: 12, fontSize: '1.1rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
-                  label: { color: '#94a3b8', fontWeight: 500 },
+                  input: { color: '#f1f5f9', background: '#334155', borderRadius: 8, fontSize: '0.9rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
+                  label: { color: '#94a3b8', fontWeight: 500, fontSize: '0.875rem' },
                   '& .MuiFilledInput-root': {
                     background: '#334155',
-                    borderRadius: 12,
-                    boxShadow: '0 2px 12px #6366f122',
+                    borderRadius: 8,
+                    boxShadow: '0 2px 8px #6366f122',
                     '&:hover': { background: '#475569' },
                     '&.Mui-focused': { background: '#334155', borderColor: '#6366f1' },
                   },
@@ -264,7 +264,7 @@ const Register = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Lock className="text-purple-400" />
+                    <Lock className="text-purple-400" sx={{ fontSize: 20 }} />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -274,19 +274,19 @@ const Register = () => {
                       edge="end"
                       sx={{ color: '#a78bfa' }}
                     >
-                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                      {showPassword ? <VisibilityOff sx={{ fontSize: 20 }} /> : <Visibility sx={{ fontSize: 20 }} />}
                     </IconButton>
                   </InputAdornment>
                 ),
                 disableUnderline: true,
               }}
               sx={{
-                input: { color: '#f1f5f9', background: '#334155', borderRadius: 12, fontSize: '1.1rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
-                label: { color: '#94a3b8', fontWeight: 500 },
+                input: { color: '#f1f5f9', background: '#334155', borderRadius: 8, fontSize: '0.9rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
+                label: { color: '#94a3b8', fontWeight: 500, fontSize: '0.875rem' },
                 '& .MuiFilledInput-root': {
                   background: '#334155',
-                  borderRadius: 12,
-                  boxShadow: '0 2px 12px #6366f122',
+                  borderRadius: 8,
+                  boxShadow: '0 2px 8px #6366f122',
                   '&:hover': { background: '#475569' },
                   '&.Mui-focused': { background: '#334155', borderColor: '#a78bfa' },
                 },
@@ -307,7 +307,7 @@ const Register = () => {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Lock className="text-purple-400" />
+                    <Lock className="text-purple-400" sx={{ fontSize: 20 }} />
                   </InputAdornment>
                 ),
                 endAdornment: (
@@ -317,19 +317,19 @@ const Register = () => {
                       edge="end"
                       sx={{ color: '#a78bfa' }}
                     >
-                      {showConfirmPassword ? <VisibilityOff /> : <Visibility />}
+                      {showConfirmPassword ? <VisibilityOff sx={{ fontSize: 20 }} /> : <Visibility sx={{ fontSize: 20 }} />}
                     </IconButton>
                   </InputAdornment>
                 ),
                 disableUnderline: true,
               }}
               sx={{
-                input: { color: '#f1f5f9', background: '#334155', borderRadius: 12, fontSize: '1.1rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
-                label: { color: '#94a3b8', fontWeight: 500 },
+                input: { color: '#f1f5f9', background: '#334155', borderRadius: 8, fontSize: '0.9rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' },
+                label: { color: '#94a3b8', fontWeight: 500, fontSize: '0.875rem' },
                 '& .MuiFilledInput-root': {
                   background: '#334155',
-                  borderRadius: 12,
-                  boxShadow: '0 2px 12px #6366f122',
+                  borderRadius: 8,
+                  boxShadow: '0 2px 8px #6366f122',
                   '&:hover': { background: '#475569' },
                   '&.Mui-focused': { background: '#334155', borderColor: '#a78bfa' },
                 },
@@ -343,16 +343,18 @@ const Register = () => {
               fullWidth
               variant="contained"
               disabled={loading}
-              className="h-12 text-lg font-bold rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 shadow-lg hover:from-blue-600 hover:to-purple-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#1e293b] mt-6"
+              className="h-9 text-sm font-bold rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 shadow-md hover:from-blue-600 hover:to-purple-700 focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#1e293b] mt-4"
               sx={{
                 textTransform: 'none',
                 fontWeight: 700,
-                fontSize: 18,
+                fontSize: '0.875rem',
                 letterSpacing: '-0.01em',
-                boxShadow: '0 4px 32px #6366f1',
+                boxShadow: '0 2px 8px #6366f1',
                 '&:hover': {
-                  boxShadow: '0 6px 40px #6366f1',
+                  boxShadow: '0 3px 16px #6366f1',
+                  transform: 'scale(1.02)',
                 },
+                borderRadius: '0.5rem',
               }}
             >
               {loading ? 'Creating Account...' : 'Create Account'}
@@ -360,7 +362,7 @@ const Register = () => {
           </form>
 
           {/* Login Link */}
-          <Box textAlign="center" mt={4}>
+          <Box textAlign="center" mt={3}>
             <Typography variant="body2" className="text-slate-400">
               Already have an account?{' '}
               <Link 

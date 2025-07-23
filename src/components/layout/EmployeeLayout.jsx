@@ -27,12 +27,12 @@ export default function EmployeeLayout() {
 
   const drawer = (
     <div className="h-full flex flex-col bg-[#111827]/90 border-r border-[#334155]/60 shadow-xl backdrop-blur-xl">
-      <div className="flex items-center justify-between px-6 py-5 border-b border-[#334155]/60">
+      <div className="flex items-center justify-between px-6 py-3 border-b border-[#334155]/60">
         <div className="flex items-center gap-2">
           <Restaurant className="text-blue-400" />
           <span className="text-xl font-bold text-slate-100 tracking-tight">Canteen</span>
         </div>
-        <IconButton className="lg:hidden" onClick={() => setMobileOpen(false)}>
+        <IconButton className="lg:invisible" onClick={() => setMobileOpen(false)}>
           <Close className="text-slate-400 lg:hidden" />
         </IconButton>
       </div>
@@ -64,7 +64,7 @@ export default function EmployeeLayout() {
   return (
     <div className="flex min-h-screen bg-gradient-to-br from-[#0f172a] to-[#1e293b]">
       {/* Sidebar */}
-      <aside className={`fixed z-30 inset-y-0 left-0 w-64 bg-[#111827]/90 border-r border-[#334155]/60 shadow-xl transition-transform duration-300 lg:static lg:translate-x-0 ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+      <aside className={`fixed z-30 inset-y-0 left-0 w-52 bg-[#111827]/90 border-r border-[#334155]/60 shadow-xl transition-transform duration-300 lg:static lg:translate-x-0 ${mobileOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         {drawer}
       </aside>
       {/* Overlay for mobile sidebar */}
@@ -74,22 +74,22 @@ export default function EmployeeLayout() {
       {/* Main content */}
       <div className="flex-1 flex flex-col min-h-screen">
         {/* Topbar */}
-        <header className="sticky top-0 z-10 flex items-center justify-between px-6 py-4 bg-[#111827]/80 backdrop-blur-2xl border-b border-[#334155]/60 shadow-md w-full">
+        <header className="sticky top-0 z-10 flex items-center justify-between px-4 py-3 bg-[#111827]/80 backdrop-blur-2xl border-b border-[#334155]/60 shadow-md w-full">
           <div className="flex items-center gap-3">
-            <IconButton className="lg:hidden" onClick={handleDrawerToggle}>
+            <IconButton className="lg:invisible" onClick={handleDrawerToggle}>
               <MenuIcon className="text-slate-300" />
             </IconButton>
-            <span className="text-lg font-bold text-slate-100 tracking-tight hidden md:inline">Dashboard</span>
+            <span className="text-base font-bold text-slate-100 tracking-tight hidden md:inline">Dashboard</span>
           </div>
           <div className="flex items-center gap-4">
             <Tooltip title={user?.name || ''}>
-              <Avatar sx={{ bgcolor: 'primary.main', width: 48, height: 48, fontWeight: 700, border: '2px solid #60a5fa', boxShadow: '0 2px 8px rgba(96,165,250,0.15)' }}>
+              <Avatar sx={{ bgcolor: 'primary.main', width: 32, height: 32, fontWeight: 700, border: '2px solid #60a5fa', boxShadow: '0 2px 8px rgba(96,165,250,0.15)' }}>
                 {user?.name?.[0]?.toUpperCase()}
               </Avatar>
             </Tooltip>
           </div>
         </header>
-        <main className="flex-1 px-4 md:px-8 py-8 max-w-7xl w-full mx-auto lg:ml-64">
+        <main className="flex-1 px-2 md:px-4 py-6 max-w-6xl w-full mx-auto lg:ml-52">
           <Outlet />
         </main>
       </div>

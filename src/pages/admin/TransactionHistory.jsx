@@ -44,8 +44,8 @@ const TransactionHistory = () => {
     <DashboardLayout>
       <Box className="mb-8 flex items-center justify-between">
         <Box>
-          <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight">Transaction History</Typography>
-          <Typography variant="body1" className="text-slate-400">Monitor all financial transactions</Typography>
+          <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight" sx={{ fontSize: '1.5rem' }}>Transaction History</Typography>
+          <Typography variant="body1" className="text-slate-400" sx={{ fontSize: '1rem' }}>Monitor all financial transactions</Typography>
         </Box>
         <Box className="flex gap-3">
           <TextField
@@ -72,7 +72,7 @@ const TransactionHistory = () => {
           />
         </Box>
       </Box>
-      <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
+      <Card className="rounded-xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
         <CardContent>
           {loading ? (
             <Box className="flex justify-center py-10">

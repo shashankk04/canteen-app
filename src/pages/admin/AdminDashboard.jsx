@@ -53,15 +53,15 @@ const AdminDashboard = () => {
   return (
     <DashboardLayout>
       <Box className="mb-8">
-        <Typography variant="h3" className="font-extrabold text-slate-100 mb-2 tracking-tight" sx={{ letterSpacing: '-0.03em' }}>
+        <Typography variant="h3" className="font-extrabold text-slate-100 mb-2 tracking-tight" sx={{ letterSpacing: '-0.03em', fontSize: '1.7rem' }}>
           Welcome back, {user?.name}! <span className="text-2xl">👋</span>
         </Typography>
-        <Typography variant="body1" className="text-slate-400 mb-6">
+        <Typography variant="body1" className="text-slate-400 mb-6" sx={{ fontSize: '1rem' }}>
           Here's what's happening with your canteen today
         </Typography>
       </Box>
       {/* Metrics Grid */}
-      <Grid container spacing={4} className="mb-10">
+      <Grid container spacing={3} className="mb-8">
         {loading ? (
           <Grid item xs={12} className="flex justify-center">
             <CircularProgress />
@@ -69,15 +69,15 @@ const AdminDashboard = () => {
         ) : metricCards.map(card => (
           <Grid item xs={12} sm={6} md={4} key={card.label}>
             <Card
-              className={`rounded-2xl shadow-xl bg-gradient-to-br ${card.color} bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform`}
-              sx={{ minHeight: 140, display: 'flex', alignItems: 'center', px: 3, py: 2, boxShadow: '0 8px 32px 0 rgba(31,38,135,0.25)', borderRadius: 4 }}
+              className={`rounded-xl shadow-xl bg-gradient-to-br ${card.color} bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform`}
+              sx={{ minHeight: 110, display: 'flex', alignItems: 'center', px: 2, py: 1.5, boxShadow: '0 4px 16px 0 rgba(31,38,135,0.18)', borderRadius: 3 }}
             >
               <Box className="flex items-center gap-4 w-full">
-                <Box className="flex items-center justify-center w-16 h-16 rounded-xl bg-black/20 shadow-lg">
+                <Box className="flex items-center justify-center w-12 h-12 rounded-xl bg-black/20 shadow-lg">
                   {card.icon}
                 </Box>
                 <Box className="flex-1">
-                  <Typography variant="h3" className="font-extrabold text-slate-100" sx={{ fontSize: '2.2rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
+                  <Typography variant="h3" className="font-extrabold text-slate-100" sx={{ fontSize: '1.3rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
                     {card.isMoney ? '₹' : ''}{metrics?.[card.key] ?? '--'}
                   </Typography>
                   <Typography variant="body2" className="text-slate-200 opacity-80">
@@ -90,20 +90,20 @@ const AdminDashboard = () => {
         ))}
       </Grid>
       {/* Quick Actions */}
-      <Typography variant="h5" className="text-slate-100 font-bold mb-4" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1.5rem', letterSpacing: '-0.01em' }}>Quick Actions</Typography>
-      <div style={{ marginBottom: '1.5rem' }}></div>
-      <Grid container spacing={4}>
+      <Typography variant="h5" className="text-slate-100 font-bold mb-4" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1.2rem', letterSpacing: '-0.01em' }}>Quick Actions</Typography>
+      <div style={{ marginBottom: '1rem' }}></div>
+      <Grid container spacing={3}>
         {quickActions.map(action => (
           <Grid item xs={12} sm={6} md={3} key={action.label}>
             <Card
-              className={`rounded-2xl shadow-lg bg-gradient-to-br ${action.color} bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 cursor-pointer hover:scale-[1.04] hover:shadow-2xl transition-transform`}
-              sx={{ minHeight: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', px: 3, py: 4, boxShadow: '0 4px 24px 0 rgba(31,38,135,0.18)', borderRadius: 4 }}
+              className={`rounded-xl shadow-lg bg-gradient-to-br ${action.color} bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 cursor-pointer hover:scale-[1.04] hover:shadow-2xl transition-transform`}
+              sx={{ minHeight: 90, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', px: 2, py: 2, boxShadow: '0 2px 8px 0 rgba(31,38,135,0.12)', borderRadius: 3 }}
               onClick={() => action.path !== '#' && navigate(action.path)}
             >
-              <Box className="flex items-center justify-center w-14 h-14 rounded-lg bg-black/20 mb-2">
+              <Box className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/20 mb-2">
                 {action.icon}
               </Box>
-              <Typography variant="h6" className="font-bold text-slate-100 mb-1" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1.1rem' }}>
+              <Typography variant="h6" className="font-bold text-slate-100 mb-1" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1rem' }}>
                 {action.label}
               </Typography>
               <Typography variant="body2" className="text-slate-200 opacity-80 text-center" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 400 }}>

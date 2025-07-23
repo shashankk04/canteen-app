@@ -63,12 +63,12 @@ const EmployeeDashboard = () => {
   };
 
   return (
-    <Box>
+    <Box className="max-w-4xl w-full mx-auto px-6 md:px-12">
       <Box className="mb-8">
-        <Typography variant="h3" className="font-extrabold text-slate-100 mb-2 tracking-tight" sx={{ letterSpacing: '-0.03em' }}>
+        <Typography variant="h3" className="font-extrabold text-slate-100 mb-2 tracking-tight" sx={{ letterSpacing: '-0.03em', fontSize: '1.7rem' }}>
           Welcome, {user?.name}! <span className="text-2xl">👋</span>
         </Typography>
-        <Typography variant="body1" className="text-slate-400 mb-6">
+        <Typography variant="body1" className="text-slate-400 mb-6" sx={{ fontSize: '1rem' }}>
           Here’s your canteen dashboard
         </Typography>
       </Box>
@@ -93,13 +93,13 @@ const EmployeeDashboard = () => {
           </div>
         </Alert>
       )}
-      <Grid container spacing={4} className="mb-10">
+      <Grid container spacing={3} className="mb-8">
         <Grid item xs={12} md={6} lg={4}>
-          <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-green-500 to-green-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform">
-            <CardContent className="flex flex-col items-center py-8">
+          <Card className="rounded-xl shadow-xl bg-gradient-to-br from-green-500 to-green-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform">
+            <CardContent className="flex flex-col items-center py-6">
               <AccountBalanceWallet fontSize="large" className="mb-2 text-white" />
-              <Typography variant="h3" className="font-extrabold text-white mb-1" sx={{ fontSize: '2.2rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
-                {loading ? <CircularProgress size={28} color="inherit" /> : `₹${metrics?.balance ?? '--'}`}
+              <Typography variant="h3" className="font-extrabold text-white mb-1" sx={{ fontSize: '1.3rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
+                {loading ? <CircularProgress size={24} color="inherit" /> : `₹${metrics?.balance ?? '--'}`}
               </Typography>
               <Typography variant="body1" className="text-slate-200 opacity-80">
                 Current Balance
@@ -108,11 +108,11 @@ const EmployeeDashboard = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-red-500 to-red-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform">
-            <CardContent className="flex flex-col items-center py-8">
+          <Card className="rounded-xl shadow-xl bg-gradient-to-br from-red-500 to-red-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform">
+            <CardContent className="flex flex-col items-center py-6">
               <Receipt fontSize="large" className="mb-2 text-white" />
-              <Typography variant="h3" className="font-extrabold text-white mb-1" sx={{ fontSize: '2.2rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
-                {loading ? <CircularProgress size={28} color="inherit" /> : `₹${metrics?.totalSpent ?? '--'}`}
+              <Typography variant="h3" className="font-extrabold text-white mb-1" sx={{ fontSize: '1.3rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
+                {loading ? <CircularProgress size={24} color="inherit" /> : `₹${metrics?.totalSpent ?? '--'}`}
               </Typography>
               <Typography variant="body1" className="text-slate-200 opacity-80">
                 Total Spent
@@ -121,11 +121,11 @@ const EmployeeDashboard = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6} lg={4}>
-          <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-blue-500 to-blue-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform">
-            <CardContent className="flex flex-col items-center py-8">
+          <Card className="rounded-xl shadow-xl bg-gradient-to-br from-blue-500 to-blue-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 metric-card hover:scale-[1.03] hover:shadow-2xl transition-transform">
+            <CardContent className="flex flex-col items-center py-6">
               <Fastfood fontSize="large" className="mb-2 text-white" />
-              <Typography variant="h3" className="font-extrabold text-white mb-1" sx={{ fontSize: '2.2rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
-                {loading ? <CircularProgress size={28} color="inherit" /> : metrics?.purchases ?? '--'}
+              <Typography variant="h3" className="font-extrabold text-white mb-1" sx={{ fontSize: '1.3rem', fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>
+                {loading ? <CircularProgress size={24} color="inherit" /> : metrics?.purchases ?? '--'}
               </Typography>
               <Typography variant="body1" className="text-slate-200 opacity-80">
                 Purchases
@@ -134,11 +134,11 @@ const EmployeeDashboard = () => {
           </Card>
         </Grid>
         <Grid item xs={12} md={6} lg={8}>
-          <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 h-full">
+          <Card className="rounded-xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 h-full">
             <CardContent>
-              <Typography variant="h6" className="font-bold text-slate-100 mb-2">Recent Activity</Typography>
+              <Typography variant="h6" className="font-bold text-slate-100 mb-2" sx={{ fontSize: '1rem' }}>Recent Activity</Typography>
               {recentLoading ? (
-                <CircularProgress size={24} />
+                <CircularProgress size={20} />
               ) : recent.length === 0 ? (
                 <Typography className="text-slate-400">No recent transactions.</Typography>
               ) : (
@@ -146,7 +146,7 @@ const EmployeeDashboard = () => {
                   {recent.map((tx, idx) => (
                     <Box key={tx._id} className="flex items-center gap-4 p-2 rounded-lg bg-slate-800/60 hover:bg-slate-700/60 transition relative" style={{ borderBottom: idx !== recent.length - 1 ? '1px solid #33415544' : 'none' }}>
                       <Chip label={tx.type.charAt(0).toUpperCase() + tx.type.slice(1)} color={tx.type === 'credit' ? 'success' : 'error'} size="small" />
-                      <Typography className="text-slate-100 font-bold" sx={{ fontSize: '1.1rem' }}>
+                      <Typography className="text-slate-100 font-bold" sx={{ fontSize: '1rem' }}>
                         ₹{tx.amount}
                       </Typography>
                       <Typography className="text-slate-300 text-base flex-1" sx={{ fontWeight: 500 }}>
@@ -163,20 +163,20 @@ const EmployeeDashboard = () => {
           </Card>
         </Grid>
       </Grid>
-      <Typography variant="h5" className="text-slate-100 font-bold mb-4" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1.5rem', letterSpacing: '-0.01em' }}>Quick Links</Typography>
-      <div style={{ marginBottom: '1.5rem' }}></div>
-      <Grid container spacing={4}>
+      <Typography variant="h5" className="text-slate-100 font-bold mb-4" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1.2rem', letterSpacing: '-0.01em' }}>Quick Links</Typography>
+      <div style={{ marginBottom: '1rem' }}></div>
+      <Grid container spacing={3}>
         {quickLinks.map(link => (
           <Grid item xs={12} sm={6} md={4} key={link.label}>
             <Card
-              className={`rounded-2xl shadow-lg bg-gradient-to-br ${link.color} bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 cursor-pointer hover:scale-[1.04] hover:shadow-2xl transition-transform`}
-              sx={{ minHeight: 140, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', px: 3, py: 4, boxShadow: '0 4px 24px 0 rgba(31,38,135,0.18)', borderRadius: 4 }}
+              className={`rounded-xl shadow-lg bg-gradient-to-br ${link.color} bg-opacity-80 backdrop-blur-xl border border-[#334155]/40 cursor-pointer hover:scale-[1.04] hover:shadow-2xl transition-transform`}
+              sx={{ minHeight: 90, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', px: 2, py: 2, boxShadow: '0 2px 8px 0 rgba(31,38,135,0.12)', borderRadius: 3 }}
               onClick={() => link.path && (window.location.href = link.path)}
             >
-              <Box className="flex items-center justify-center w-14 h-14 rounded-lg bg-black/20 mb-2">
+              <Box className="flex items-center justify-center w-10 h-10 rounded-lg bg-black/20 mb-2">
                 {link.icon}
               </Box>
-              <Typography variant="h6" className="font-bold text-slate-100 mb-1" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1.1rem' }}>
+              <Typography variant="h6" className="font-bold text-slate-100 mb-1" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 700, fontSize: '1rem' }}>
                 {link.label}
               </Typography>
               <Typography variant="body2" className="text-slate-200 opacity-80 text-center" sx={{ fontFamily: 'Inter, Roboto, Arial, sans-serif', fontWeight: 400 }}>

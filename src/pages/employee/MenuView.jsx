@@ -50,14 +50,20 @@ const MenuView = () => {
   };
 
   return (
-    <Box>
+    <Box className="max-w-4xl w-full px-6 md:px-12">
       <Box className="mb-8">
-        <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight">Today’s Menu</Typography>
-        <Typography variant="body1" className="text-slate-400">Order from today’s available items</Typography>
+        <Typography 
+          variant="h4" 
+          className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-1 tracking-tight"
+          sx={{ fontSize: '2rem', letterSpacing: '-0.03em' }}
+        >
+          Today’s Menu
+        </Typography>
+        <Typography variant="body1" className="text-slate-400" sx={{ fontSize: '1rem' }}>Order from today’s available items</Typography>
       </Box>
       {error && <Alert severity="error" className="mb-4">{error}</Alert>}
       {success && <Alert severity="success" className="mb-4">{success}</Alert>}
-      <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-yellow-500 to-yellow-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
+      <Card className="rounded-xl shadow-xl bg-gradient-to-br from-yellow-500 to-yellow-700 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
         <CardContent>
           {loading ? (
             <Box className="flex justify-center py-10">
@@ -67,10 +73,10 @@ const MenuView = () => {
             <TableContainer component={Paper} className="bg-transparent">
               <Table>
                 <TableHead>
-                  <TableRow className="bg-yellow-700/80">
-                    <TableCell className="text-slate-200 font-bold">Name</TableCell>
-                    <TableCell className="text-slate-200 font-bold">Price</TableCell>
-                    <TableCell className="text-slate-200 font-bold">Actions</TableCell>
+                  <TableRow style={{ background: '#243c5a' }}>
+                    <TableCell className="text-white font-bold">Name</TableCell>
+                    <TableCell className="text-white font-bold">Price</TableCell>
+                    <TableCell className="text-white font-bold">Actions</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -79,7 +85,11 @@ const MenuView = () => {
                       <TableCell colSpan={3} className="text-slate-400 text-center">No items available today.</TableCell>
                     </TableRow>
                   ) : items.map(item => (
-                    <TableRow key={item._id} className="hover:bg-yellow-700/30 transition">
+                    <TableRow
+                      key={item._id}
+                      style={{ transition: 'background 0.2s', cursor: 'pointer' }}
+                      className="hover:bg-blue-900/60"
+                    >
                       <TableCell className="text-slate-100">{item.name}</TableCell>
                       <TableCell className="text-slate-100">₹{item.price}</TableCell>
                       <TableCell>

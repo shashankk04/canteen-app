@@ -123,10 +123,10 @@ const EmployeeProfile = () => {
   };
 
   return (
-    <Box>
+    <Box className="max-w-4xl w-full px-6 md:px-12">
       <Box className="mb-8">
-        <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight">My Profile</Typography>
-        <Typography variant="body1" className="text-slate-400">View and update your profile information</Typography>
+        <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight" sx={{ fontSize: '1.5rem' }}>My Profile</Typography>
+        <Typography variant="body1" className="text-slate-400" sx={{ fontSize: '1rem' }}>View and update your profile details</Typography>
       </Box>
       {balance !== null && (
         <Alert severity="info" className="mb-4">Current Balance: <b>₹{balance}</b></Alert>

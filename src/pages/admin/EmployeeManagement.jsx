@@ -135,139 +135,371 @@ const EmployeeManagement = () => {
   return (
     <DashboardLayout>
       <Box className="mb-8 flex items-center justify-between">
-        <Box>
-          <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight">Employee Management</Typography>
-          <Typography variant="body1" className="text-slate-400">Add, edit, and manage all employees</Typography>
-        </Box>
+        <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight" sx={{ fontSize: '1.875rem' }}>Employee Management</Typography>
         <Button
           variant="contained"
           startIcon={<PersonAdd />}
-          className="bg-gradient-to-br from-blue-500 to-blue-700 text-white shadow-lg rounded-xl"
-          onClick={() => handleOpen()}
+          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md rounded-lg"
+          sx={{ 
+            fontSize: 14, 
+            px: 3, 
+            py: 1.5, 
+            borderRadius: '0.75rem', 
+            height: 40,
+            fontWeight: 600,
+            textTransform: 'none'
+          }}
+          onClick={handleOpen}
         >
-          Add Employee
+          ADD EMPLOYEE
         </Button>
       </Box>
-      <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
-        <CardContent>
+
+      {/* Global alerts */}
+      {error && <Alert severity="error" className="mb-4 bg-red-900/20 border border-red-500/30 text-red-200">{error}</Alert>}
+      {success && <Alert severity="success" className="mb-4 bg-green-900/20 border border-green-500/30 text-green-200">{success}</Alert>}
+
+      <Card 
+        className="rounded-2xl shadow-2xl border border-slate-700/50" 
+        sx={{ 
+          background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+          backdropFilter: 'blur(20px)'
+        }}
+      >
+        <CardContent sx={{ p: 0 }}>
           {loading ? (
-            <Box className="flex justify-center py-10">
-              <CircularProgress />
+            <Box className="flex justify-center py-16">
+              <CircularProgress size={40} sx={{ color: '#3b82f6' }} />
             </Box>
           ) : (
-            <TableContainer component={Paper} className="bg-transparent">
-              <Table>
-                <TableHead>
-                  <TableRow className="bg-slate-800/80">
-                    <TableCell className="text-slate-200 font-bold">Name</TableCell>
-                    <TableCell className="text-slate-200 font-bold">Email</TableCell>
-                    <TableCell className="text-slate-200 font-bold">Balance</TableCell>
-                    <TableCell className="text-slate-200 font-bold">Actions</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {employees.map(emp => (
-                    <TableRow key={emp._id} className="hover:bg-slate-700/40 transition">
-                      <TableCell className="text-slate-100">{emp.name}</TableCell>
-                      <TableCell className="text-slate-100">{emp.email}</TableCell>
-                      <TableCell className="text-slate-100">₹{emp.balance}</TableCell>
-                      <TableCell>
-                        <Tooltip title="Credit Balance">
-                          <IconButton onClick={() => openCreditDialog(emp.employeeId)}>
-                            <Add className="text-green-400" />
-                          </IconButton>
-                        </Tooltip>
-                      </TableCell>
+            <Box sx={{ overflowX: 'auto' }}>
+              <TableContainer 
+                component={Paper} 
+                sx={{ 
+                  background: 'transparent',
+                  boxShadow: 'none'
+                }}
+              >
+                <Table>
+                  <TableHead>
+                    <TableRow 
+                      sx={{ 
+                        background: 'linear-gradient(90deg, #334155 0%, #475569 100%)',
+                        '& .MuiTableCell-head': {
+                          borderBottom: 'none',
+                          py: 2.5,
+                          fontSize: '0.875rem',
+                          fontWeight: 700,
+                          letterSpacing: '0.05em'
+                        }
+                      }}
+                    >
+                      <TableCell className="text-slate-200">Name</TableCell>
+                      <TableCell className="text-slate-200">Email</TableCell>
+                      <TableCell className="text-slate-200" align="center">Balance</TableCell>
+                      <TableCell className="text-slate-200" align="center">Actions</TableCell>
                     </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
+                  </TableHead>
+                  <TableBody>
+                    {employees.length === 0 ? (
+                      <TableRow>
+                        <TableCell 
+                          colSpan={4} 
+                          className="text-slate-400 text-center py-12"
+                          sx={{ borderBottom: 'none', fontSize: '1rem' }}
+                        >
+                          No employees found. Add your first employee to get started.
+                        </TableCell>
+                      </TableRow>
+                    ) : employees.map((emp, index) => (
+                      <TableRow 
+                        key={emp._id} 
+                        sx={{
+                          '&:hover': {
+                            background: 'rgba(51, 65, 85, 0.3)',
+                          },
+                          '& .MuiTableCell-body': {
+                            borderBottom: index === employees.length - 1 ? 'none' : '1px solid rgba(71, 85, 105, 0.3)',
+                            py: 2,
+                            fontSize: '0.875rem'
+                          }
+                        }}
+                      >
+                        <TableCell className="text-slate-100 font-medium">{emp.name}</TableCell>
+                        <TableCell className="text-slate-300">{emp.email}</TableCell>
+                        <TableCell 
+                          align="center"
+                          sx={{ 
+                            color: emp.balance > 0 ? '#10b981' : emp.balance < 0 ? '#ef4444' : '#94a3b8',
+                            fontWeight: 600,
+                            fontSize: '0.9rem'
+                          }}
+                        >
+                          ₹{emp.balance?.toLocaleString() || '0'}
+                        </TableCell>
+                        <TableCell align="center">
+                          <Tooltip title="Credit Balance" arrow>
+                            <IconButton 
+                              onClick={() => openCreditDialog(emp.employeeId)}
+                              sx={{
+                                color: '#10b981',
+                                '&:hover': {
+                                  backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                  transform: 'scale(1.1)'
+                                },
+                                transition: 'all 0.2s ease'
+                              }}
+                            >
+                              <Add />
+                            </IconButton>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
           )}
         </CardContent>
       </Card>
       {/* Add Employee Dialog */}
-      <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
-        <DialogTitle className="font-bold text-slate-100 bg-slate-900">Add Employee</DialogTitle>
-        <DialogContent className="bg-slate-800">
-          {error && <Alert severity="error" className="mb-4">{error}</Alert>}
-          {success && <Alert severity="success" className="mb-4">{success}</Alert>}
-          <TextField
-            margin="dense"
-            label="Name"
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            fullWidth
-            variant="outlined"
-            className="mb-4"
-            InputProps={{ className: 'text-slate-100' }}
-          />
-          <TextField
-            margin="dense"
-            label="Email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            fullWidth
-            variant="outlined"
-            className="mb-4"
-            InputProps={{ className: 'text-slate-100' }}
-          />
-          <TextField
-            margin="dense"
-            label="Password"
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            fullWidth
-            variant="outlined"
-            className="mb-4"
-            InputProps={{ className: 'text-slate-100' }}
-          />
-          <TextField
-            margin="dense"
-            label="Employee ID"
-            name="employeeId"
-            value={form.employeeId}
-            onChange={handleChange}
-            fullWidth
-            variant="outlined"
-            className="mb-4"
-            InputProps={{ className: 'text-slate-100' }}
-          />
+      <Dialog 
+        open={open} 
+        onClose={handleClose} 
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{
+          sx: {
+            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+            border: '1px solid rgba(71, 85, 105, 0.3)',
+            borderRadius: '1rem'
+          }
+        }}
+      >
+        <DialogTitle 
+          className="font-bold text-slate-100"
+          sx={{ 
+            background: 'linear-gradient(90deg, #334155 0%, #475569 100%)',
+            fontSize: '1.25rem',
+            py: 2.5
+          }}
+        >
+          Add New Employee
+        </DialogTitle>
+        <DialogContent sx={{ px: 3, py: 3, background: 'transparent' }}>
+          {error && <Alert severity="error" className="mb-4 bg-red-900/20 border border-red-500/30 text-red-200">{error}</Alert>}
+          {success && <Alert severity="success" className="mb-4 bg-green-900/20 border border-green-500/30 text-green-200">{success}</Alert>}
+          
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2.5, mt: 1 }}>
+            <TextField
+              label="Full Name"
+              name="name"
+              value={form.name}
+              onChange={handleChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(51, 65, 85, 0.3)',
+                  color: '#f1f5f9',
+                  borderRadius: '0.75rem',
+                  '& fieldset': { borderColor: 'rgba(71, 85, 105, 0.5)' },
+                  '&:hover fieldset': { borderColor: 'rgba(59, 130, 246, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#3b82f6' }
+                },
+                '& .MuiInputLabel-root': { color: '#94a3b8' },
+                '& .MuiInputLabel-root.Mui-focused': { color: '#3b82f6' }
+              }}
+            />
+            <TextField
+              label="Email Address"
+              name="email"
+              type="email"
+              value={form.email}
+              onChange={handleChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(51, 65, 85, 0.3)',
+                  color: '#f1f5f9',
+                  borderRadius: '0.75rem',
+                  '& fieldset': { borderColor: 'rgba(71, 85, 105, 0.5)' },
+                  '&:hover fieldset': { borderColor: 'rgba(59, 130, 246, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#3b82f6' }
+                },
+                '& .MuiInputLabel-root': { color: '#94a3b8' },
+                '& .MuiInputLabel-root.Mui-focused': { color: '#3b82f6' }
+              }}
+            />
+            <TextField
+              label="Password"
+              name="password"
+              type="password"
+              value={form.password}
+              onChange={handleChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(51, 65, 85, 0.3)',
+                  color: '#f1f5f9',
+                  borderRadius: '0.75rem',
+                  '& fieldset': { borderColor: 'rgba(71, 85, 105, 0.5)' },
+                  '&:hover fieldset': { borderColor: 'rgba(59, 130, 246, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#3b82f6' }
+                },
+                '& .MuiInputLabel-root': { color: '#94a3b8' },
+                '& .MuiInputLabel-root.Mui-focused': { color: '#3b82f6' }
+              }}
+            />
+            <TextField
+              label="Employee ID"
+              name="employeeId"
+              value={form.employeeId}
+              onChange={handleChange}
+              fullWidth
+              variant="outlined"
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(51, 65, 85, 0.3)',
+                  color: '#f1f5f9',
+                  borderRadius: '0.75rem',
+                  '& fieldset': { borderColor: 'rgba(71, 85, 105, 0.5)' },
+                  '&:hover fieldset': { borderColor: 'rgba(59, 130, 246, 0.5)' },
+                  '&.Mui-focused fieldset': { borderColor: '#3b82f6' }
+                },
+                '& .MuiInputLabel-root': { color: '#94a3b8' },
+                '& .MuiInputLabel-root.Mui-focused': { color: '#3b82f6' }
+              }}
+            />
+          </Box>
         </DialogContent>
-        <DialogActions className="bg-slate-900">
-          <Button onClick={handleClose} className="text-slate-300">Cancel</Button>
-          <Button onClick={handleSave} variant="contained" className="bg-gradient-to-br from-blue-500 to-blue-700 text-white" disabled={saving}>
-            {saving ? 'Saving...' : 'Add Employee'}
+        <DialogActions sx={{ px: 3, py: 2.5, background: 'rgba(51, 65, 85, 0.2)' }}>
+          <Button 
+            onClick={handleClose} 
+            sx={{ 
+              color: '#94a3b8',
+              textTransform: 'none',
+              fontWeight: 500,
+              '&:hover': { backgroundColor: 'rgba(148, 163, 184, 0.1)' }
+            }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleSave} 
+            variant="contained" 
+            disabled={saving}
+            sx={{
+              background: 'linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%)',
+              color: 'white',
+              textTransform: 'none',
+              fontWeight: 600,
+              px: 3,
+              borderRadius: '0.75rem',
+              '&:hover': {
+                background: 'linear-gradient(135deg, #2563eb 0%, #1e40af 100%)',
+              },
+              '&:disabled': {
+                background: 'rgba(59, 130, 246, 0.3)',
+                color: 'rgba(255, 255, 255, 0.5)'
+              }
+            }}
+          >
+            {saving ? 'Adding Employee...' : 'Add Employee'}
           </Button>
         </DialogActions>
       </Dialog>
+
       {/* Credit Employee Dialog */}
-      <Dialog open={creditOpen} onClose={closeCreditDialog} maxWidth="xs" fullWidth>
-        <DialogTitle className="font-bold text-slate-100 bg-slate-900">Credit Employee Balance</DialogTitle>
-        <DialogContent className="bg-slate-800">
-          {error && <Alert severity="error" className="mb-4">{error}</Alert>}
-          {success && <Alert severity="success" className="mb-4">{success}</Alert>}
-          <TextField
-            margin="dense"
-            label="Amount"
-            name="amount"
-            value={creditAmount}
-            onChange={e => setCreditAmount(e.target.value)}
-            fullWidth
-            variant="outlined"
-            type="number"
-            className="mb-4"
-            InputProps={{ className: 'text-slate-100' }}
-          />
+      <Dialog 
+        open={creditOpen} 
+        onClose={closeCreditDialog} 
+        maxWidth="sm" 
+        fullWidth
+        PaperProps={{
+          sx: {
+            background: 'linear-gradient(135deg, #1e293b 0%, #0f172a 100%)',
+            border: '1px solid rgba(71, 85, 105, 0.3)',
+            borderRadius: '1rem'
+          }
+        }}
+      >
+        <DialogTitle 
+          className="font-bold text-slate-100"
+          sx={{ 
+            background: 'linear-gradient(90deg, #059669 0%, #047857 100%)',
+            fontSize: '1.25rem',
+            py: 2.5
+          }}
+        >
+          Credit Employee Balance
+        </DialogTitle>
+        <DialogContent sx={{ px: 3, py: 3, background: 'transparent' }}>
+          {error && <Alert severity="error" className="mb-4 bg-red-900/20 border border-red-500/30 text-red-200">{error}</Alert>}
+          {success && <Alert severity="success" className="mb-4 bg-green-900/20 border border-green-500/30 text-green-200">{success}</Alert>}
+          
+          <Box sx={{ mt: 1 }}>
+            <TextField
+              label="Credit Amount"
+              name="amount"
+              value={creditAmount}
+              onChange={e => setCreditAmount(e.target.value)}
+              fullWidth
+              variant="outlined"
+              type="number"
+              inputProps={{ min: 0, step: "0.01" }}
+              sx={{
+                '& .MuiOutlinedInput-root': {
+                  backgroundColor: 'rgba(51, 65, 85, 0.3)',
+                  color: '#f1f5f9',
+                  borderRadius: '0.75rem',
+                  fontSize: '1.1rem',
+                  '& fieldset': { borderColor: 'rgba(5, 150, 105, 0.5)' },
+                  '&:hover fieldset': { borderColor: 'rgba(5, 150, 105, 0.7)' },
+                  '&.Mui-focused fieldset': { borderColor: '#059669' }
+                },
+                '& .MuiInputLabel-root': { color: '#94a3b8' },
+                '& .MuiInputLabel-root.Mui-focused': { color: '#059669' }
+              }}
+            />
+          </Box>
         </DialogContent>
-        <DialogActions className="bg-slate-900">
-          <Button onClick={closeCreditDialog} className="text-slate-300">Cancel</Button>
-          <Button onClick={handleCredit} variant="contained" className="bg-gradient-to-br from-green-500 to-green-700 text-white" disabled={creditLoading || !creditAmount}>
-            {creditLoading ? 'Crediting...' : 'Credit'}
+        <DialogActions sx={{ px: 3, py: 2.5, background: 'rgba(51, 65, 85, 0.2)' }}>
+          <Button 
+            onClick={closeCreditDialog} 
+            sx={{ 
+              color: '#94a3b8',
+              textTransform: 'none',
+              fontWeight: 500,
+              '&:hover': { backgroundColor: 'rgba(148, 163, 184, 0.1)' }
+            }}
+          >
+            Cancel
+          </Button>
+          <Button 
+            onClick={handleCredit} 
+            variant="contained" 
+            disabled={creditLoading || !creditAmount}
+            sx={{
+              background: 'linear-gradient(135deg, #059669 0%, #047857 100%)',
+              color: 'white',
+              textTransform: 'none',
+              fontWeight: 600,
+              px: 3,
+              borderRadius: '0.75rem',
+              '&:hover': {
+                background: 'linear-gradient(135deg, #047857 0%, #065f46 100%)',
+              },
+              '&:disabled': {
+                background: 'rgba(5, 150, 105, 0.3)',
+                color: 'rgba(255, 255, 255, 0.5)'
+              }
+            }}
+          >
+            {creditLoading ? 'Processing...' : 'Credit Amount'}
           </Button>
         </DialogActions>
       </Dialog>

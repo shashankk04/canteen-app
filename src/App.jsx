@@ -14,6 +14,7 @@ import EmployeeProfile from './pages/employee/EmployeeProfile';
 import MenuView from './pages/employee/MenuView';
 import Passbook from './pages/employee/Passbook';
 import EmployeeLayout from './components/layout/EmployeeLayout';
+import { useEffect } from 'react';
 
 // Create Material UI dark theme
 const theme = createTheme({
@@ -51,9 +52,17 @@ const theme = createTheme({
     fontWeightBold: 700,
     fontWeightMedium: 500,
     fontWeightRegular: 400,
+    h1: { fontSize: '1.75rem' },
+    h2: { fontSize: '1.5rem' },
+    h3: { fontSize: '1.25rem' },
+    h4: { fontSize: '1.125rem' },
+    h5: { fontSize: '1rem' },
+    h6: { fontSize: '0.875rem' },
+    body1: { fontSize: '0.875rem' },
+    body2: { fontSize: '0.75rem' },
   },
   shape: {
-    borderRadius: 14,
+    borderRadius: 8,
   },
   components: {
     MuiPaper: {
@@ -67,6 +76,16 @@ const theme = createTheme({
 });
 
 function App() {
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      document.title = document.hidden ? "Don't forget us 😢" : "Canteen App";
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    return () => {
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
+    };
+  }, []);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />

@@ -35,11 +35,11 @@ const Passbook = () => {
   const filtered = transactions.filter(tx => filter.type ? tx.type === filter.type : true);
 
   return (
-    <Box>
+    <Box className="max-w-4xl w-full mx-auto px-6 md:px-12">
       <Box className="mb-8 flex items-center justify-between">
         <Box>
-          <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight">My Passbook</Typography>
-          <Typography variant="body1" className="text-slate-400">View your transaction history</Typography>
+          <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight" sx={{ fontSize: '1.5rem' }}>My Passbook</Typography>
+          <Typography variant="body1" className="text-slate-400" sx={{ fontSize: '1rem' }}>View your transaction history</Typography>
         </Box>
         <TextField
           select
@@ -57,7 +57,7 @@ const Passbook = () => {
         </TextField>
       </Box>
       {error && <Alert severity="error" className="mb-4">{error}</Alert>}
-      <Card className="rounded-2xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
+      <Card className="rounded-xl shadow-xl bg-gradient-to-br from-slate-800 to-slate-900 bg-opacity-80 backdrop-blur-xl border border-[#334155]/40">
         <CardContent>
           {loading ? (
             <Box className="flex justify-center py-10">

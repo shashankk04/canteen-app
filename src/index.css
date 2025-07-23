@@ -12,6 +12,11 @@ body {
   min-height: 100vh;
 }
 
+html, body, #root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;

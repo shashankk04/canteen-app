@@ -204,14 +204,12 @@ const ItemManagement = () => {
   return (
     <DashboardLayout>
       <Box className="mb-8 flex items-center justify-between">
-        <Box>
-          <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight">Item Management</Typography>
-          <Typography variant="body1" className="text-slate-400">Manage all menu items and set today’s menu</Typography>
-        </Box>
+        <Typography variant="h4" className="font-extrabold text-slate-100 mb-1 tracking-tight" sx={{ fontSize: '1.5rem' }}>Item Management</Typography>
         <Button
           variant="contained"
           startIcon={<Add />}
-          className="bg-gradient-to-br from-green-500 to-green-700 text-white shadow-lg rounded-xl"
+          className="bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-md rounded-lg"
+          sx={{ fontSize: 14, px: 2.5, py: 1, borderRadius: '0.75rem', height: 36 }}
           onClick={() => handleOpen()}
         >
           Add Item
